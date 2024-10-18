@@ -11,7 +11,9 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {}
+classes = {
+    'User': User,
+}
 
 
 class DBStorage:

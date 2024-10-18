@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get the storage type from environment variable
-storage_t = os.getenv("HBNB_TYPE_STORAGE")
+storage_t = os.getenv("UL_TYPE_STORAGE")
 
 if storage_t == "db":
     from models.engine.database import DBStorage
