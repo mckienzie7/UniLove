@@ -3,10 +3,14 @@
 initialize the models package
 """
 
-from os import getenv
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Get the storage type from environment variable
-storage_t = getenv("HBNB_TYPE_STORAGE")
+storage_t = os.getenv("HBNB_TYPE_STORAGE")
 
 if storage_t == "db":
     from models.engine.database import DBStorage

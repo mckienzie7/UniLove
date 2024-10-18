@@ -27,8 +27,7 @@ class User(BaseModel, Base):
     updated_at = Column(String(100))
 
     # Relationships
-    matches = relationship('Match', back_populates='user')  # Assuming there's a Match model
-    messages = relationship('Message', back_populates='sender')  # For messaging functionality
+    
 
     def set_password(self, password):
         """Hash the password for security"""

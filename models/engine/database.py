@@ -21,10 +21,10 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HBNB_MYSQL_USER = getenv('UD_USER') or "UAdmin"
+        HBNB_MYSQL_USER = getenv('UD_USER') or "ULAdmin"
         HBNB_MYSQL_PWD = getenv('UD_PWD')
         HBNB_MYSQL_HOST = getenv('UD_HOST') or "localhost"
-        HBNB_MYSQL_DB = getenv('UD_DB') or "UniDate"
+        HBNB_MYSQL_DB = getenv('UD_DB') or "UniLove_db"
         HBNB_ENV = getenv('UD_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(HBNB_MYSQL_USER,
