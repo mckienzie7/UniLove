@@ -9,14 +9,15 @@ from hashlib import md5
 
 class User(BaseModel, Base):
     """User Representation"""
-    __tablename__ = 'users'  # Specify table name if needed
+
+    __tablename__ = "users"  # Specify table name if needed
     # Attributes
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     password_hash = Column(String(128), nullable=False)
     bio = Column(Text)
-    session_id: str = Column(String(250))
-    reset_token: str = Column(String(250))
+    session_id = Column(String(250))
+    reset_token = Column(String(250))
     gender = Column(String(10))
     age = Column(Integer)
     interests = Column(String(255))
@@ -29,7 +30,6 @@ class User(BaseModel, Base):
     updated_at = Column(String(100))
 
     # Relationships
-
 
     def set_password(self, password):
         """Hash the password for security"""
