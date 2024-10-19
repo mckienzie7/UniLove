@@ -15,6 +15,8 @@ class User(BaseModel, Base):
     email = Column(String(120), unique=True, nullable=False)
     password_hash = Column(String(128), nullable=False)
     bio = Column(Text)
+    session_id: str = Column(String(250))
+    reset_token: str = Column(String(250))
     gender = Column(String(10))
     age = Column(Integer)
     interests = Column(String(255))
@@ -27,7 +29,7 @@ class User(BaseModel, Base):
     updated_at = Column(String(100))
 
     # Relationships
-    
+
 
     def set_password(self, password):
         """Hash the password for security"""
