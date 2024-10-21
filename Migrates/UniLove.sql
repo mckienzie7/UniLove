@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS UniLove_db;
-
+SHOW DATABASES;
 
 
 

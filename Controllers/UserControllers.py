@@ -2,6 +2,7 @@
 """
 Contains the class User Controller
 """
+from datetime import datetime
 
 from models.user import User
 from os import getenv
@@ -21,11 +22,11 @@ class UserController:
         self.db = storage
         self.__session = None
 
-    def add_user(self, username: str,  email: str, password_hash: str) -> User:
+    def add_user(self, username: str,  email: str, password_hash: str, admin: bool) -> User:
         """Create a new user in the given Database"""
         
         try:
-            new_user = User(username=username, email=email, password_hash=password_hash)
+            new_user = User(username=username, email=email, password_hash=password_hash, admin=admin)
             self.db.new(new_user)
             self.db.save()
         except Exception:
@@ -67,7 +68,6 @@ class UserController:
             synchronize_session=False
         )
         self.db.save()
-
 
 
 

@@ -93,7 +93,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(
             self.user.password_hash, md5(
                 "password123".encode()).hexdigest())
-    #
+
     def test_check_password(self):
         """Test the check_password method returns correct boolean"""
         self.user.set_password("password123")

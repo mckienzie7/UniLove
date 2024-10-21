@@ -16,6 +16,7 @@ class User(BaseModel, Base):
     email = Column(String(120), unique=True, nullable=False)
     password_hash = Column(String(128), nullable=False)
     bio = Column(Text)
+    admin = Column(Boolean, nullable=False)
     session_id = Column(String(250))
     reset_token = Column(String(250))
     gender = Column(String(10))

@@ -2,6 +2,7 @@
 """
 Contains the class DBStorage
 """
+from datetime import datetime
 
 import models
 from models.base_model import BaseModel, Base
@@ -103,4 +104,25 @@ class DBStorage:
         else:
             count = len(models.storage.all(cls).values())
 
+
         return count
+
+    def cleanup_expired_sessions(self):
+        """
+            Remove expired sessions from database
+        :return: Nothing
+        """
+        current_time = datetime.utcnow()
+        expired_users = self.__session.query(User).filter(User.session_expiration < current_time).all()
+
+        for user in expired_users:
+            # Remove session ID and expiration from the user
+            user.session_id = None
+            user.session_expiration = None
+
+    # Commit the changes to the database
+        self.__session.commit()
+
+
+
+

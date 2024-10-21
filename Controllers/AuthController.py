@@ -28,13 +28,13 @@ class AuthController:
         self._db = storage
         self._userC = UserController()
 
-    def register_user(self, username: str, email: str, password: str) -> User:
+    def register_user(self, username: str, email: str, password: str, admin: bool) -> User:
         """Register a new user in the database."""
         new_user = None
         try:
             new_user = self._userC.find_user_by(email=email)
         except NoResultFound:
-            return self._userC.add_user(username, email, _hash_password(password))
+            return self._userC.add_user(username, email, _hash_password(password), admin)
         raise ValueError(f"User {email} already exists")
 
     def valid_login(self, email: str, password: str) -> bool:
@@ -70,6 +70,7 @@ class AuthController:
         user = None
         if session_id is None:
             return None
+        self._db.cleanup_expired_sessions()
         try:
             user = self._userC.find_user_by(session_id=session_id)
         except NoResultFound:
