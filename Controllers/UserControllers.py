@@ -22,11 +22,11 @@ class UserController:
         self.db = storage
         self.__session = None
 
-    def add_user(self, username: str,  email: str, password_hash: str, admin: bool) -> User:
+    def add_user(self, username: str,  email: str, password: bytes, admin: bool) -> User:
         """Create a new user in the given Database"""
         
         try:
-            new_user = User(username=username, email=email, password_hash=password_hash, admin=admin)
+            new_user = User(username=username, email=email, password=password, admin=admin)
             self.db.new(new_user)
             self.db.save()
         except Exception:
@@ -68,11 +68,3 @@ class UserController:
             synchronize_session=False
         )
         self.db.save()
-
-
-
-    
-
-
-
-

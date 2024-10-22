@@ -107,14 +107,22 @@ def Register():
     data = request.get_json()
     if not data:
         return jsonify({'message': 'No input data provided'}), 400
-    username  = data.get('username')
-    email = data.get('email')
-    password = data.get('password')
-    admin = data.get('admin')
+    username = data.get("username")
+    email = data.get("email")
+    password = data.get("password")
+    admin = data.get("admin")
+    if admin == "False":
+        admin = False
+    elif admin == "True":
+        admin = True
+    print(f"Username: {username}, Email: {email}, Password: {password}")
 
+    if not username or not email or not password:
+        return jsonify({"message": "Missing username, email or password"}), 400
+    auth = AuthController()
     try:
-        AuthController.register_user(username, email, password, admin)
-        return jsonify({"username": username, "email": email, "message": "user created"})
+        new_user = auth.register_user(username, email, password, admin)
+        return jsonify({"username": new_user.username, "email": new_user.email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
 

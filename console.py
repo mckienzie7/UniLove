@@ -36,14 +36,18 @@ class HBNBCommand(cmd.Cmd):
                 kvp = arg.split('=', 1)
                 key = kvp[0]
                 value = kvp[1]
-                if value[0] == value[-1] == '"':
+                if value[0] == value[-1] == '"':  # Handle string values
                     value = shlex.split(value)[0].replace('_', ' ')
+                elif value.lower() == 'true':  # Handle boolean True
+                    value = True
+                elif value.lower() == 'false':  # Handle boolean False
+                    value = False
                 else:
                     try:
-                        value = int(value)
+                        value = int(value)  # Handle integer values
                     except ValueError:
                         try:
-                            value = float(value)
+                            value = float(value)  # Handle float values
                         except ValueError:
                             continue
                 new_dict[key] = value

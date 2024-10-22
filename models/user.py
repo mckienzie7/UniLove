@@ -14,9 +14,9 @@ class User(BaseModel, Base):
     # Attributes
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
-    password_hash = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False)
     bio = Column(Text)
-    admin = Column(Boolean, nullable=False)
+    admin = Column(Boolean,nullable=True ,default=False)
     session_id = Column(String(250))
     reset_token = Column(String(250))
     gender = Column(String(10))
